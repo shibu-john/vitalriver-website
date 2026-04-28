@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital River — Build habits. Grow your fund.</title>
+    <meta name="description" content="Vital River builds simple, beautiful Android apps that help you live better. Meet HabitFund, our habit tracker with micro-savings.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9A7E;
+            --sage-dark: #5F7C61;
+            --sage-light: #A8C0AA;
+            --gold: #C9A84C;
+            --gold-dark: #A88A2E;
+            --bg: #F7F8F4;
+            --text: #2A2F26;
+            --text-muted: #5A6356;
+            --card-bg: #FFFFFF;
+            --border: #E5E8DF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        a {
+            color: var(--sage-dark);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--gold-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 248, 244, 0.92);
+            backdrop-filter: saturate(180%) blur(12px);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 6px rgba(124, 154, 126, 0.25);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .nav-links a:hover {
+            color: var(--sage-dark);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 96px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(124, 154, 126, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            padding: 6px 14px;
+            background-color: rgba(201, 168, 76, 0.12);
+            color: var(--gold-dark);
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.25rem);
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 .accent {
+            color: var(--sage-dark);
+            font-style: italic;
+        }
+
+        .hero p.lead {
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 580px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background-color: var(--sage);
+            color: #fff;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .hero-cta:hover {
+            background-color: var(--sage-dark);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        /* HabitFund section */
+        .product {
+            padding: 80px 0 100px;
+        }
+
+        .product-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 56px 48px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(124, 154, 126, 0.06);
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(124, 154, 126, 0.14);
+            color: var(--sage-dark);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .product h2 {
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            margin-bottom: 18px;
+        }
+
+        .product p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        .product ul {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .product ul li {
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 10px;
+            color: var(--text);
+            font-size: 0.98rem;
+        }
+
+        .product ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 16px;
+            height: 16px;
+            background-color: rgba(124, 154, 126, 0.18);
+            border-radius: 50%;
+        }
+
+        .product ul li::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 13px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--sage);
+            border-radius: 50%;
+        }
+
+        .play-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 22px;
+            background-color: var(--text);
+            color: #fff;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .play-badge:hover {
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+
+        .play-badge svg {
+            flex-shrink: 0;
+        }
+
+        .play-badge .badge-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+
+        .play-badge .badge-small {
+            font-size: 0.7rem;
+            opacity: 0.85;
+            letter-spacing: 0.4px;
+        }
+
+        .play-badge .badge-large {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+        }
+
+        .play-badge.coming-soon {
+            background-color: var(--gold);
+            color: #fff;
+        }
+
+        .play-badge.coming-soon:hover {
+            background-color: var(--gold-dark);
+        }
+
+        /* Phone mockup */
+        .phone-mockup {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .phone {
+            width: 240px;
+            height: 480px;
+            background: linear-gradient(160deg, #2A2F26, #1a1d18);
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 20px 60px rgba(124, 154, 126, 0.18), 0 8px 24px rgba(0, 0, 0, 0.12);
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--bg) 0%, #EEF1E8 100%);
+            border-radius: 26px;
+            overflow: hidden;
+            padding: 28px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .phone-greeting {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .phone-greeting span {
+            display: block;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .phone-fund {
+            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
+            border-radius: 14px;
+            padding: 14px;
+            color: #fff;
+        }
+
+        .phone-fund .fund-label {
+            font-size: 0.65rem;
+            opacity: 0.85;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .phone-fund .fund-amount {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+        }
+
+        .phone-fund .fund-amount .currency {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-right: 2px;
+        }
+
+        .habit-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .habit-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background-color: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .habit-check.empty {
+            background-color: transparent;
+            border: 2px solid var(--border);
+        }
+
+        .habit-text {
+            flex: 1;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .habit-coin {
+            font-size: 0.7rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+        }
+
+        /* Values strip */
+        .values {
+            padding: 40px 0 80px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 24px;
+        }
+
+        .value-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(124, 154, 126, 0.14);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--sage-dark);
+        }
+
+        .value-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #EEF1E8;
+            border-top: 1px solid var(--border);
+            padding: 56px 0 32px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 56px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--sage-dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .product-card {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 28px;
+                text-align: center;
+            }
+
+            .product ul li {
+                text-align: left;
+            }
+
+            .product ul {
+                max-width: 360px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 32px;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .phone {
+                width: 220px;
+                height: 440px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-inner {
+                height: 64px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero {
+                padding: 64px 0 56px;
+            }
+
+            .product {
+                padding: 56px 0 64px;
+            }
+
+            .product-card {
+                padding: 32px 22px;
+            }
+
+            .footer-links {
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .nav-links {
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <span class="logo-mark">V</span>
+                <span>Vital River</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <span class="hero-eyebrow">An independent mobile app studio</span>
+            <h1>Build habits. <span class="accent">Grow your fund.</span></h1>
+            <p class="lead">Vital River builds simple, beautiful Android apps that help you live better.</p>
+            <a href="#habitfund" class="hero-cta">
+                Meet HabitFund
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </header>
+
+    <section class="product" id="habitfund">
+        <div class="container">
+            <div class="product-card">
+                <div class="product-text">
+                    <span class="product-tag">Our first app</span>
+                    <h2>HabitFund</h2>
+                    <p>Track your daily habits. Save a little each time you finish one. Watch your fund — and your life — grow together.</p>
+                    <ul>
+                        <li>Build streaks that actually stick.</li>
+                        <li>Set tiny micro-savings per habit.</li>
+                        <li>See your progress in one calm view.</li>
+                    </ul>
+                    <a href="#" class="play-badge coming-soon" aria-label="Coming soon on Google Play">
+                        <svg width="22" height="24" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.5 1.2a2 2 0 0 0-1 1.7v20.2a2 2 0 0 0 1 1.7l11.7-11.8L1.5 1.2z" fill="#fff"/>
+                            <path d="M17.4 8.9 14 12.3l3.4 3.4 4.4-2.5c1.3-.7 1.3-2.6 0-3.4l-4.4-2.9z" fill="#fff" opacity="0.85"/>
+                            <path d="m13.2 13 -11.7 11.8c.4.2.9.2 1.4-.1l13.5-7.7-3.2-4z" fill="#fff" opacity="0.7"/>
+                            <path d="m13.2 13 3.2-3.2-13.5-7.7c-.5-.3-1-.3-1.4-.1L13.2 13z" fill="#fff" opacity="0.55"/>
+                        </svg>
+                        <span class="badge-text">
+                            <span class="badge-small">Coming soon on</span>
+                            <span class="badge-large">Google Play</span>
+                        </span>
+                    </a>
+                </div>
+                <div class="phone-mockup" aria-hidden="true">
+                    <div class="phone">
+                        <div class="phone-screen">
+                            <div class="phone-greeting">
+                                <span>Tuesday morning</span>
+                                Good morning, Sam.
+                            </div>
+                            <div class="phone-fund">
+                                <div class="fund-label">Your fund</div>
+                                <div class="fund-amount"><span class="currency">$</span>248.50</div>
+                            </div>
+                            <div class="habit-row">
+                                <div class="habit-check">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                </div>
+                                <div class="habit-text">Morning walk</div>
+                                <div class="habit-coin">+$1</div>
+                            </div>
+                            <div class="habit-row">
+                                <div class="habit-check">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                </div>
+                                <div class="habit-text">Read 10 pages</div>
+                                <div class="habit-coin">+$0.50</div>
+                            </div>
+                            <div class="habit-row">
+                                <div class="habit-check empty"></div>
+                                <div class="habit-text">No phone after 9pm</div>
+                                <div class="habit-coin">+$2</div>
+                            </div>
+                            <div class="habit-row">
+                                <div class="habit-check empty"></div>
+                                <div class="habit-text">Stretch 5 minutes</div>
+                                <div class="habit-coin">+$0.50</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <div class="container">
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 12l7-7 7 7"/></svg>
+                    </div>
+                    <h3>Small steps</h3>
+                    <p>Tiny daily wins are how lives change. We design for that.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3>Calm by default</h3>
+                    <p>No streaks shaming you. No noisy notifications. Just gentle progress.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-12a8 8 0 0 1 16 0c0 7.5-8 12-8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <h3>Privacy first</h3>
+                    <p>Your habits are your business. Your data stays yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-mark">V</span>
+                        <span>Vital River</span>
+                    </a>
+                    <p>Independent mobile apps for a calmer, more intentional life.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy</a></li>
+                            <li><a href="support.html">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:hello@vitalriver.net">hello@vitalriver.net</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Vital River. All rights reserved.</div>
+                <div>Made with care for Android.</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

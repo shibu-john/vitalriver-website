@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Vital River</title>
+    <meta name="description" content="HabitFund privacy policy. How Vital River collects, stores, and protects your data, and how you can exercise your rights under UK GDPR.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9A7E;
+            --sage-dark: #5F7C61;
+            --sage-light: #A8C0AA;
+            --gold: #C9A84C;
+            --gold-dark: #A88A2E;
+            --bg: #F7F8F4;
+            --text: #2A2F26;
+            --text-muted: #5A6356;
+            --card-bg: #FFFFFF;
+            --border: #E5E8DF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-weight: 400;
+            line-height: 1.25;
+            color: var(--text);
+        }
+
+        a {
+            color: var(--sage-dark);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--gold-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(247, 248, 244, 0.92);
+            backdrop-filter: saturate(180%) blur(12px);
+            -webkit-backdrop-filter: saturate(180%) blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'DM Serif Display', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--sage), var(--sage-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 6px rgba(124, 154, 126, 0.25);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--sage-dark);
+        }
+
+        .nav-links a.active {
+            color: var(--sage-dark);
+        }
+
+        /* Page header */
+        .page-header {
+            padding: 64px 0 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(124, 154, 126, 0.10) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-bottom: 24px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: rgba(124, 154, 126, 0.10);
+            color: var(--sage-dark);
+        }
+
+        .page-eyebrow {
+            display: inline-block;
+            padding: 6px 14px;
+            background-color: rgba(201, 168, 76, 0.12);
+            color: var(--gold-dark);
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p.lead {
+            font-size: clamp(1rem, 1.4vw, 1.1rem);
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .page-meta {
+            margin-top: 18px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Layout */
+        .policy-wrap {
+            padding: 32px 0 80px;
+        }
+
+        .policy-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 56px;
+            align-items: flex-start;
+        }
+
+        .toc {
+            position: sticky;
+            top: 96px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px 22px;
+        }
+
+        .toc h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc;
+        }
+
+        .toc ol li {
+            counter-increment: toc;
+            margin-bottom: 6px;
+        }
+
+        .toc ol li a {
+            display: block;
+            padding: 6px 8px;
+            font-size: 0.88rem;
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .toc ol li a::before {
+            content: counter(toc) ".";
+            display: inline-block;
+            width: 22px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .toc ol li a:hover {
+            background-color: rgba(124, 154, 126, 0.10);
+            color: var(--sage-dark);
+        }
+
+        .policy-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 48px 48px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(124, 154, 126, 0.04);
+        }
+
+        .policy-card section {
+            margin-bottom: 40px;
+            scroll-margin-top: 96px;
+        }
+
+        .policy-card section:last-child {
+            margin-bottom: 0;
+        }
+
+        .policy-card h2 {
+            font-size: 1.65rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .policy-card h2 .num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--sage-dark);
+            letter-spacing: 0.5px;
+        }
+
+        .policy-card h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .policy-card p {
+            color: var(--text);
+            margin-bottom: 14px;
+            font-size: 1rem;
+        }
+
+        .policy-card p.muted {
+            color: var(--text-muted);
+        }
+
+        .policy-card ul {
+            list-style: none;
+            margin-bottom: 14px;
+            padding-left: 0;
+        }
+
+        .policy-card ul li {
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .policy-card ul li::before {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 11px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--sage);
+            border-radius: 50%;
+        }
+
+        .policy-card ul.checks li {
+            padding-left: 30px;
+        }
+
+        .policy-card ul.checks li::before {
+            display: none;
+        }
+
+        .policy-card ul.checks li::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 18px;
+            height: 18px;
+            background-color: rgba(124, 154, 126, 0.18);
+            border-radius: 50%;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235F7C61' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .callout {
+            background-color: rgba(124, 154, 126, 0.08);
+            border-left: 3px solid var(--sage);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 16px 0 20px;
+        }
+
+        .callout p {
+            margin: 0;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .callout strong {
+            color: var(--sage-dark);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0 20px;
+            font-size: 0.95rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            text-align: left;
+            background-color: rgba(124, 154, 126, 0.10);
+            padding: 12px 16px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+            vertical-align: top;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(124, 154, 126, 0.10), rgba(201, 168, 76, 0.06));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin-top: 12px;
+        }
+
+        .contact-card h3 {
+            margin-top: 0;
+        }
+
+        .contact-card p {
+            margin-bottom: 6px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #EEF1E8;
+            border-top: 1px solid var(--border);
+            padding: 56px 0 32px;
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 56px;
+            flex-wrap: wrap;
+        }
+
+        .footer-col h4 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 14px;
+            color: var(--text);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: var(--sage-dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .policy-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .toc {
+                position: static;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-inner {
+                height: 64px;
+            }
+
+            .nav-links {
+                gap: 20px;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .page-header {
+                padding: 40px 0 24px;
+            }
+
+            .policy-card {
+                padding: 28px 22px;
+            }
+
+            .policy-card h2 {
+                font-size: 1.4rem;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+
+            .footer-links {
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .nav-links {
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-mark">V</span>
+                <span>Vital River</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="privacy.html" class="active">Privacy Policy</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container page-header-content">
+            <a href="index.html" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to home
+            </a>
+            <span class="page-eyebrow">Privacy Policy</span>
+            <h1>Your habits are yours.</h1>
+            <p class="lead">This policy explains what HabitFund collects, why we collect it, and the rights you have over your data under the UK GDPR and the Data Protection Act 2018.</p>
+            <div class="page-meta">Last updated: April 2026 &middot; Applies to HabitFund for Android</div>
+        </div>
+    </header>
+
+    <main class="policy-wrap">
+        <div class="container">
+            <div class="policy-grid">
+
+                <aside class="toc" aria-label="Contents">
+                    <h4>Contents</h4>
+                    <ol>
+                        <li><a href="#who-we-are">Who we are</a></li>
+                        <li><a href="#data-we-collect">Data we collect</a></li>
+                        <li><a href="#how-we-use-data">How we use your data</a></li>
+                        <li><a href="#legal-bases">Legal bases</a></li>
+                        <li><a href="#storage">Where data is stored</a></li>
+                        <li><a href="#sharing">Sharing &amp; processors</a></li>
+                        <li><a href="#retention">How long we keep data</a></li>
+                        <li><a href="#your-rights">Your rights</a></li>
+                        <li><a href="#security">Security</a></li>
+                        <li><a href="#children">Children</a></li>
+                        <li><a href="#changes">Changes to this policy</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ol>
+                </aside>
+
+                <article class="policy-card">
+
+                    <section id="who-we-are">
+                        <h2><span class="num">01</span>Who we are</h2>
+                        <p>HabitFund is built and operated by <strong>Vital River</strong>, an independent mobile app studio based in the United Kingdom. In this policy, "we", "us", and "our" mean Vital River.</p>
+                        <p>For the purposes of the UK GDPR and the Data Protection Act 2018, Vital River is the <strong>data controller</strong> for the personal data we process through HabitFund.</p>
+                        <p>If you have any questions about this policy, you can reach us at <a href="mailto:hello@vitalriver.net">hello@vitalriver.net</a>.</p>
+                    </section>
+
+                    <section id="data-we-collect">
+                        <h2><span class="num">02</span>Data we collect</h2>
+                        <p>We collect only what HabitFund needs to work for you. Nothing more.</p>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>What this includes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Basic account info</strong></td>
+                                    <td>Your email address, display name, and an authentication token. Created when you sign in.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Habit data</strong></td>
+                                    <td>The habits you create, the days you mark them done, your streaks, and any notes you add.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Savings goals</strong></td>
+                                    <td>The micro-savings amounts (in £) you assign to each habit and the running total you have logged in the app.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Technical data</strong></td>
+                                    <td>App version, device type, Android OS version, and crash reports. Used to keep the app stable.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="callout">
+                            <p><strong>What we don't collect.</strong> HabitFund does not access your contacts, photos, location, microphone, or any financial accounts. The savings totals you see in HabitFund are figures you log yourself — we don't move money on your behalf.</p>
+                        </div>
+                    </section>
+
+                    <section id="how-we-use-data">
+                        <h2><span class="num">03</span>How we use your data</h2>
+                        <p>We use your data only for the following purposes:</p>
+                        <ul class="checks">
+                            <li>To let you sign in and sync your habits across your devices.</li>
+                            <li>To save your habit progress and savings totals.</li>
+                            <li>To send you optional reminders about habits you have set up.</li>
+                            <li>To diagnose crashes and improve app stability.</li>
+                            <li>To respond to you when you contact our support email.</li>
+                        </ul>
+                        <p>We do not sell your data. We do not use your data for advertising. We do not build a profile of you to share with third parties.</p>
+                    </section>
+
+                    <section id="legal-bases">
+                        <h2><span class="num">04</span>Legal bases for processing</h2>
+                        <p>Under the UK GDPR, we rely on the following legal bases:</p>
+                        <ul>
+                            <li><strong>Contract</strong> — to provide the HabitFund service you have signed up for.</li>
+                            <li><strong>Legitimate interests</strong> — to keep HabitFund secure, prevent abuse, and fix bugs.</li>
+                            <li><strong>Consent</strong> — for optional features such as habit reminders. You can withdraw consent at any time in the app's settings.</li>
+                            <li><strong>Legal obligation</strong> — where we must process data to comply with UK law.</li>
+                        </ul>
+                    </section>
+
+                    <section id="storage">
+                        <h2><span class="num">05</span>Where data is stored</h2>
+                        <p>Your data is stored using <strong>Firebase</strong>, a secure cloud platform provided by Google. Specifically, HabitFund uses Firebase Authentication for sign-in and Cloud Firestore for storing your habits and savings goals.</p>
+                        <p>Firebase data may be processed on Google servers located inside or outside the UK. When data is transferred outside the UK, it is protected by appropriate safeguards under Article 46 of the UK GDPR, including the UK International Data Transfer Addendum and Standard Contractual Clauses.</p>
+                        <p>You can read Google's own privacy commitments at <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.</p>
+                    </section>
+
+                    <section id="sharing">
+                        <h2><span class="num">06</span>Sharing &amp; processors</h2>
+                        <p>We only share your data with the small number of trusted processors we need to run HabitFund. Each one is bound by a data processing agreement.</p>
+
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Processor</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Google (Firebase)</td>
+                                    <td>Authentication, database storage, and crash reporting.</td>
+                                </tr>
+                                <tr>
+                                    <td>Google (Play Services)</td>
+                                    <td>App distribution and update delivery on Android.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p>We do not share your habit data, savings goals, or contact details with anyone else, except where we are legally required to do so.</p>
+                    </section>
+
+                    <section id="retention">
+                        <h2><span class="num">07</span>How long we keep data</h2>
+                        <p>We keep your data only as long as you have an active HabitFund account.</p>
+                        <ul>
+                            <li>If you delete your account from within the app, your habit data and savings goals are deleted within <strong>30 days</strong>.</li>
+                            <li>Crash reports are retained for up to <strong>90 days</strong> and are not linked to your identity.</li>
+                            <li>Backups containing residual data are rotated out within <strong>90 days</strong>.</li>
+                        </ul>
+                        <p>We may retain a minimal record (for example, the fact that an account was deleted) where we need it to comply with a legal obligation.</p>
+                    </section>
+
+                    <section id="your-rights">
+                        <h2><span class="num">08</span>Your rights</h2>
+                        <p>Under the UK GDPR, you have the following rights over your personal data:</p>
+                        <ul>
+                            <li><strong>Right to be informed</strong> — to know what we do with your data. This policy is part of how we meet that right.</li>
+                            <li><strong>Right of access</strong> — to receive a copy of the data we hold about you.</li>
+                            <li><strong>Right to rectification</strong> — to ask us to correct inaccurate data.</li>
+                            <li><strong>Right to erasure</strong> — to ask us to delete your data ("the right to be forgotten").</li>
+                            <li><strong>Right to restrict processing</strong> — to ask us to pause processing in certain situations.</li>
+                            <li><strong>Right to data portability</strong> — to receive your data in a structured, commonly used format.</li>
+                            <li><strong>Right to object</strong> — to object to processing based on legitimate interests.</li>
+                            <li><strong>Rights related to automated decision-making</strong> — HabitFund does not make automated decisions that produce legal or similarly significant effects on you.</li>
+                        </ul>
+                        <p>To exercise any of these rights, email <a href="mailto:hello@vitalriver.net">hello@vitalriver.net</a>. We will respond within one month.</p>
+
+                        <div class="callout">
+                            <p><strong>Complaints.</strong> If you are not satisfied with how we have handled your data, you can complain to the UK Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a> or call 0303 123 1113. We would appreciate the chance to address your concerns first.</p>
+                        </div>
+                    </section>
+
+                    <section id="security">
+                        <h2><span class="num">09</span>Security</h2>
+                        <p>We take reasonable technical and organisational measures to protect your data, including:</p>
+                        <ul class="checks">
+                            <li>Encryption in transit (HTTPS / TLS) between your device and Firebase.</li>
+                            <li>Encryption at rest on Google's Firebase infrastructure.</li>
+                            <li>Strict access controls — only the people who need it can access production systems.</li>
+                            <li>Regular dependency and security updates to the HabitFund Android app.</li>
+                        </ul>
+                        <p>No service can promise perfect security, but we work hard to keep your data safe and to be transparent if anything goes wrong.</p>
+                    </section>
+
+                    <section id="children">
+                        <h2><span class="num">10</span>Children</h2>
+                        <p>HabitFund is intended for users aged <strong>13 and over</strong>. We do not knowingly collect data from children under 13. If you believe a child under 13 has created an account, please email <a href="mailto:hello@vitalriver.net">hello@vitalriver.net</a> and we will delete the data promptly.</p>
+                    </section>
+
+                    <section id="changes">
+                        <h2><span class="num">11</span>Changes to this policy</h2>
+                        <p>We may update this policy from time to time as HabitFund evolves or as the law changes. When we make material changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify you in the app.</p>
+                    </section>
+
+                    <section id="contact">
+                        <h2><span class="num">12</span>Contact</h2>
+                        <p>If you have any questions about this policy or your data, get in touch.</p>
+                        <div class="contact-card">
+                            <h3>Vital River</h3>
+                            <p class="muted">Independent mobile app studio &middot; United Kingdom</p>
+                            <p>Email: <a href="mailto:hello@vitalriver.net">hello@vitalriver.net</a></p>
+                        </div>
+                    </section>
+
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-mark">V</span>
+                        <span>Vital River</span>
+                    </a>
+                    <p>Independent mobile apps for a calmer, more intentional life.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="privacy.html">Privacy</a></li>
+                            <li><a href="support.html">Support</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:hello@vitalriver.net">hello@vitalriver.net</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 Vital River. All rights reserved.</div>
+                <div>Made with care for Android.</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
